@@ -8,7 +8,7 @@ const data = require('../Data/data.json');
 
     const HomeScreen = () => {
     const [products, setProducts] = useState([]);
-    const [isLoading, setIsLoading] = useState(false); 
+    const [isLoading, setIsLoading] = useState(false);
     const navigation = useNavigation();
 
     const handleError = (error) => {
@@ -29,7 +29,6 @@ const data = require('../Data/data.json');
         };
         getData();
     }, []);
-    
     return (
         <SafeAreaView style={styles.container}>
             <FlatList 
@@ -38,7 +37,9 @@ const data = require('../Data/data.json');
                 
                 <>
                 <View style={styles.navBar}>
-                    <Image style={styles.menuIcon} source={require('../assets/Images/Menu.png')} />
+                    <TouchableOpacity onPress={() => navigation.openDrawer() }>
+                        <Image style={styles.menuIcon} source={require('../assets/Images/Menu.png')} />
+                    </TouchableOpacity>
                     <Image style={styles.logoText} source={require('../assets/Images/Logo.png')} />
                     <Image style={styles.searchIcon} source={require('../assets/Images/Search.png')} />
                     <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
