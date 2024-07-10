@@ -36,27 +36,38 @@
             </Text>
             <View style={styles.materialCareContainer}>
                 <View style={styles.materialCareDetails}>
-                    <Image source={require('../assets/Images/Do Not Bleach.png')} style={styles.materialImage} />
+                    <Image source={require('../assets/Images/Do Not Bleach.png')} style={styles.materialCareImage} />
                     <Text style={styles.materialName}> Do Not Use Bleach</Text>
                 </View>
                 <View style={styles.materialCareDetails}>
-                    <Image source={require('../assets/Images/Do Not Bleach.png')} style={styles.materialImage} />
-                    <Text style={styles.materialName}> Do Not Tu</Text>
+                    <Image source={require('../assets/Images/Do Not Tumble Dry.png')} style={styles.materialCareImage} />
+                    <Text style={styles.materialName}> Do not tumble dry</Text>
                 </View>
                 <View style={styles.materialCareDetails}>
-                    <Image source={require('../assets/Images/Do Not Bleach.png')} style={styles.materialImage} />
-                    <Text style={styles.materialName}> Do Not Use Bleach</Text>
+                    <Image source={require('../assets/Images/Do Not Wash.png')} style={styles.materialCareImage} />
+                    <Text style={styles.materialName}> Dry clean with tetrachloroethylene</Text>
                 </View>
                 <View style={styles.materialCareDetails}>
-                    <Image source={require('../assets/Images/Do Not Bleach.png')} style={styles.materialImage} />
-                    <Text style={styles.materialName}> Do Not Use Bleach</Text>
+                    <Image source={require('../assets/Images/Iron Low Temperature.png')} style={styles.materialCareImage} />
+                    <Text style={styles.materialName}> Iron at a maximum of 110oC/230oF</Text>
                 </View>
-
+                <Image style={styles.line} source={require('../assets/Images/line.png')} />
+            </View>
+            <View style={styles.shippingInfo}>
+                <Image source={require('../assets/Images/Shipping.png')} style={styles.shippingIcon} />
+                <Text style={styles.shippingText}>Free Flat Rate Shipping</Text>
+                <Text style={styles.shippingText2}>
+                Estimated to be delivered on
+                09/11/2021 - 12/11/2021.
+                </Text>
+                <Image source={require('../assets/Images/Up.png')} style={styles.upIcon} />
             </View>
         </View>
         <TouchableOpacity onPress={() => addToCart(dress)} style={styles.addToCartButton}>
-            <Text style={styles.addToCartButtonText}>Add to Cart</Text>
-            </TouchableOpacity>
+            <Image source={require('../assets/Images/Plus.png')} style={styles.plusIcon} />
+            <Text style={styles.addToCartButtonText}>ADD TO BASKET</Text>
+            <Image source={require('../assets/Images/Heart.png')} style={styles.heartIcon} />
+        </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>
     );
@@ -149,18 +160,83 @@
     materialCareDetails: {
         flexDirection: 'row',
         alignItems: 'center',
+        marginBottom: 15,
+    },
+    materialCareImage: {
+        width: 24,
+        height: 24,
+        marginRight: 10,
+        marginBottom: 10
+    },
+    line: {
+        width: '90%',
+        height: 1,
+        marginTop: 20,
+        marginBottom: 20,
+        backgroundColor: '#EDEDED',
+    },
+    shippingInfo: {
+        marginTop: 20,
         marginBottom: 10,
+        flexDirection: 'row',
+        
+    },
+    shippingIcon: {
+        width: 24,
+        height: 24,
+        marginRight: 10,
+        marginBottom: 10
+    },
+    shippingText: {
+        fontSize: 16,
+    },
+    shippingText2: {
+        width: '60%',
+        position: 'absolute',
+        fontSize: 14,
+        color: '#666',
+        marginLeft: 35,
+        marginTop: 10,
+        top: 20,
+    },
+    upIcon: {
+        width: 24,
+        height: 24,
+        marginBottom: 10,
+        position: 'absolute',
+        right: 30,
     },
     addToCartButton: {
-        marginTop: 20,
-        backgroundColor: '#FA908A',
+        height: 60,
+        marginTop: 100,
+        backgroundColor: '#000000',
         paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderRadius: 5,
-        alignItems: 'center',
     },
     addToCartButtonText: {
-        color: '#fff',
+        color: '#F5F5F5',
         fontSize: 16,
+        position: 'relative',
+        marginLeft: 10,
+        left: 50,
+        top: 12,
+    },
+    plusIcon: {
+        width: 24,
+        height: 24,
+        marginBottom: 10,
+        marginLeft: 10,
+        tintColor: 'white',
+        position: 'absolute',
+        left: 10,
+        top: 20,
+    },
+    heartIcon: {
+        width: 24,
+        height: 24,
+        marginRight: 30,
+        tintColor: '#FFFFFF',
+        position: 'absolute',
+        right: 10,
+        top: 20,
     },
     });

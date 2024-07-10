@@ -42,7 +42,7 @@
             </TouchableOpacity>
         </View>
         <View style={styles.sectionTwo}>
-            <Text style={styles.sectionTwoText}>O U R  S T O R Y</Text>
+            <Text style={styles.sectionTwoText}>O U R  S T O R E</Text>
             <View style={styles.listContainer}>
             <Ionicons style={styles.listIcon} name="list" size={25} color="black" />
             </View>
@@ -143,14 +143,6 @@
         margin: 16,
         left: 30,
         bottom: 5,
-    },
-    listIcon: {
-        position: 'relative',
-        left: 8,
-    },
-    filterIcon: {
-        position: 'relative',
-        left: 10,
     },
     row: {
         justifyContent: 'space-between',
