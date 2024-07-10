@@ -5,13 +5,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from './Screens/HomeScreen';
 import CartScreen from './Screens/CartScreen';
-import { CartProvider } from './src/context/CartContext';
 import SideBar from './Components/SideBar';
+import DressDetailScreen from './Components/DressDetails';
+import { CartProvider } from './src/context/CartContext';
+
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
-const HomeStack = () => {
 
+const HomeStack = () => {
   return (
     <CartProvider>
       <Stack.Navigator>
@@ -25,6 +27,11 @@ const HomeStack = () => {
           component={CartScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+                    name="DressDetails"
+                    component={DressDetailScreen}
+                    options={{ headerShown: false }}
+                />
       </Stack.Navigator>
   </CartProvider>
   );

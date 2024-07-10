@@ -124,7 +124,8 @@ const styles = StyleSheet.create({
     },
     cartItem: {
         flexDirection: 'row',
-        justifyContent:'space-between',
+        alignContent: 'center',
+        justifyContent:'center',
         marginLeft: 40,
         marginTop: 30,
     },
@@ -152,8 +153,8 @@ const styles = StyleSheet.create({
         height: 20,
         width: 20,
         resizeMode: 'contain',
-        position: 'absolute',
-        right: 40,
+        position: 'relative',
+        left: 0,
         bottom: 60,
     },
 });

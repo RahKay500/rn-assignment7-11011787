@@ -1,94 +1,60 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { CartContext } from '../src/context/CartContext';
-
-import dress1 from '../assets/Images/dress1.png';
-import dress2 from '../assets/Images/dress2.png';
-import dress3 from '../assets/Images/dress3.png';
-import dress4 from '../assets/Images/dress4.png';
-import dress5 from '../assets/Images/dress5.png';
-import dress6 from '../assets/Images/dress6.png';
-import dress7 from '../assets/Images/dress7.png';
-
+    import React, { useContext } from 'react';
+    import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+    import { CartContext } from '../src/context/CartContext';
 
     const ProductsCard = ({ product, isLoading, setIsLoading, handleError }) => {
-        const { addToCart } = useContext(CartContext);
+    const { addToCart } = useContext(CartContext);
 
-        const [cart, setCart] = useState([]);
-        useEffect(() => {
-            const loadCart = async () => {
-            const storedCart = await AsyncStorage.getItem('cart');
-            if (storedCart) {
-                setCart(JSON.parse(storedCart));
-            }
-            };
-            loadCart();
-        }, []);    
-
-        return (
-            <View style={styles.dressContainer}>
-                <Image
-                    source={getImageSource(product.image)}
-                    style={styles.dress}
-                    onError={handleError}
-                    // Add a placeholder image while loading
-                    onLoadStart={() => setIsLoading(true)}
-                    onLoad={() => setIsLoading(false)}
-                />
-                {isLoading && <Text style={styles.placeholderText}>Loading...</Text>}
-                <View style={styles.dressInfo}>
-                    <Text style={styles.dressName}>{product.name}</Text>
-                    <Text style={styles.dressDescription}>{product.description}</Text>
-                    <Text style={styles.dressPrice}>${product.price}</Text>
-                </View>
-                <TouchableOpacity onPress={() => addToCart(product)}>
-                    <Image source={require('../assets/Images/add_circle.png')} style={styles.addToCart} />
-                </TouchableOpacity>
+    return (
+        <View style={styles.dressContainer}>
+        <View style={styles.card}>
+            <Image
+            source={{ uri: product.image }}
+            style={styles.dress}
+            onError={handleError}
+            onLoadStart={() => setIsLoading(true)}
+            onLoad={() => setIsLoading(false)}
+            />
+            {isLoading && <Text style={styles.placeholderText}>Loading...</Text>}
+            <View style={styles.dressInfo}>
+            <Text style={styles.dressName}>{product.title}</Text>
+            <Text style={styles.dressDescription} numberOfLines={2}>
+                {product.description}
+            </Text>
+            <Text style={styles.dressPrice}>${product.price}</Text>
             </View>
-            );
-        }
+        </View>
+        <TouchableOpacity onPress={() => addToCart(product)} style={styles.addToCart}>
+            <Image source={require('../assets/Images/add_circle.png')} style={styles.addToCartIcon} />
+        </TouchableOpacity>
+        </View>
+    );
+    };
 
-export default ProductsCard
+    export default React.memo(ProductsCard);
 
-
-const getImageSource = (imagePath) => {
-    switch (imagePath) {
-        case '../assets/Images/dress1.png':
-            return dress1;
-        case '../assets/Images/dress2.png':
-            return dress2;
-        case '../assets/Images/dress3.png':
-            return dress3;
-        case '../assets/Images/dress4.png':
-            return dress4;
-        case '../assets/Images/dress5.png':
-            return dress5;
-        case '../assets/Images/dress6.png':
-            return dress6;
-        case '../assets/Images/dress7.png':
-            return dress7;
-        case '../assets/Images/dress8.png':
-            return dress3;
-        default:
-            return null;
-    }
-};
-
-const styles = StyleSheet.create({
+    const styles = StyleSheet.create({
     dressContainer: {
-        marginRight: 15,
-        left: 20,
+        marginBottom: 20,
+        width: '48%', // Adjust width to create two columns with a small gap
+        flexDirection: 'row', // Ensure items are aligned horizontally
+        justifyContent: 'space-between', // Ensure items are spaced evenly
+        alignItems: 'stretch', // Align items vertically
+    },
+    card: {
+        flex: 1,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        overflow: 'hidden',
+        marginBottom: 10,
     },
     dress: {
         width: '100%',
         height: 260,
         resizeMode: 'contain',
-        marginBottom: 10,
     },
     dressInfo: {
-        paddingLeft: 10,
-        paddingBottom: 30,
+        padding: 10,
     },
     dressName: {
         fontSize: 18,
@@ -96,19 +62,29 @@ const styles = StyleSheet.create({
     },
     dressDescription: {
         fontSize: 14,
-        fontWeight: '600',
-        color: '#aaa',
+        color: '#666',
+        marginTop: 5,
     },
     dressPrice: {
         fontSize: 20,
         color: '#FA908A',
-        fontWeight: '500',
+        marginTop: 5,
     },
     addToCart: {
-        width: 30,
-        height: 30,
         position: 'absolute',
         right: 10,
-        bottom: 110,
+        bottom: 10,
     },
-})
+    addToCartIcon: {
+        width: 30,
+        height: 30,
+    },
+    placeholderText: {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: [{ translateX: -50 }, { translateY: -50 }],
+        fontSize: 16,
+        color: '#999',
+    },
+    });
