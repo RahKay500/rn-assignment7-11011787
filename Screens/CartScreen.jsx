@@ -1,31 +1,10 @@
 import React, { useContext } from 'react';
 import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
-import { CartContext } from '../src/context/CartContext';  
+import { CartContext } from '../src/context/CartContext';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const CartScreen = () => {
     const { cart, removeFromCart } = useContext(CartContext);
-
-    const getImageSource = (imagePath) => {
-        switch (imagePath) {
-            case '../assets/Images/dress1.png':
-                return require('../assets/Images/dress1.png');
-            case '../assets/Images/dress2.png':
-                return require('../assets/Images/dress2.png');
-            case '../assets/Images/dress3.png':
-                return require('../assets/Images/dress3.png');
-            case '../assets/Images/dress4.png':
-                return require('../assets/Images/dress4.png');
-            case '../assets/Images/dress5.png':
-                return require('../assets/Images/dress5.png');
-            case '../assets/Images/dress6.png':
-                return require('../assets/Images/dress6.png');
-            case '../assets/Images/dress7.png':
-                return require('../assets/Images/dress7.png');
-            default:
-                return null;
-        }
-    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -41,13 +20,14 @@ const CartScreen = () => {
             </View>
             <FlatList
                 data={cart}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item.id.toString()}
+                contentContainerStyle={styles.flatListContentContainer}
+                showsVerticalScrollIndicator={false}
                 renderItem={({ item }) => (
                     <View style={styles.cartItem}>
-                        <Image source={getImageSource(item.image)} style={styles.cartItemImage} />
+                        <Image source={{ uri: item.image }} style={styles.cartItemImage} />
                         <View style={styles.cartItemInfo}>
-                            <Text style={styles.cartItemName}>{item.name}</Text>
-                            <Text style={styles.cartItemDescription}>{item.description}</Text>
+                            <Text style={styles.cartItemName}>{item.title}</Text>
                             <Text style={styles.cartItemPrice}>${item.price}</Text>
                         </View>
                         <TouchableOpacity onPress={() => removeFromCart(item.id)}>
@@ -118,25 +98,30 @@ const styles = StyleSheet.create({
         opacity: 0.3,
     },
     cartItemInfo: {
+        width: '60%',
         alignContent: 'center',
         position: 'relative',
-        top: 40,
+        top: 60,
     },
     cartItem: {
         flexDirection: 'row',
-        alignContent: 'center',
-        justifyContent:'center',
-        marginLeft: 40,
+        alignContent: 'left',
+        justifyContent:'left',
         marginTop: 30,
     },
     cartItemImage: {
-        width: 170,
-        height: 220,
+        width: '40%',
+        height: 200,
+        resizeMode: 'contain',
+        marginLeft: 10,
     },
     cartItemName: {
+        width: '90%',
+        flexWrap: 'wrap',
         fontSize: 18,
         fontWeight: '600',
         marginBottom: 10,
+        marginLeft: 10,
     },
     cartItemDescription: {
         fontSize: 14,
@@ -148,13 +133,18 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#FA908A',
         fontWeight: '500',
+        marginLeft: 10,
     },
+    
     removeButton: {
-        height: 20,
-        width: 20,
+        width: 25,
+        height: 25,
         resizeMode: 'contain',
-        position: 'relative',
-        left: 0,
-        bottom: 60,
+        position: 'absolute',
+        right: 60,
+        bottom: 10,
     },
+    flatListContentContainer: {
+        paddingBottom: 100,
+    }
 });
