@@ -5,7 +5,7 @@ import { CartContext } from '../src/context/CartContext';
 
 const ProductsCard =({ product, isLoading, setIsLoading, handleError }) => {
 const { addToCart } = useContext(CartContext);
-const [cart, setCart] = useState([]);
+const [setCart] = useState([]);
 
 useEffect(() => {
     const loadCart = async () => {
