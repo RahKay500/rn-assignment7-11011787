@@ -48,10 +48,10 @@ export default React.memo (ProductsCard);
 
 const styles = StyleSheet.create({
 dressContainer: {
-    width: '60%', // Adjust width to create two columns with a small gap
-    flexDirection: 'colummn', // Ensure items are aligned horizontally
-    justifyContent: 'space-between', // Ensure items are spaced evenly
-    alignItems: 'stretch', // Align items vertically
+    width: '60%', 
+    flexDirection: 'colummn', 
+    justifyContent: 'space-between', 
+    alignItems: 'stretch', 
     position: 'relative',
 },
 dress: {
@@ -59,9 +59,10 @@ dress: {
     height: 150,
     resizeMode: 'contain',
     marginBottom: 10,
+    marginLeft: 10,
 },
 dressInfo: {
-    paddingLeft: 10,
+    paddingLeft: 30,
     paddingBottom: 30,
 },
 dressName: {

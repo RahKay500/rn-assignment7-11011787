@@ -1,4 +1,3 @@
-    // CartContext.js
     import React, { createContext, useState, useEffect } from 'react';
     import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -42,7 +41,7 @@
     };
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+        <CartContext.Provider value={React.useMemo(() => ({ cart, addToCart, removeFromCart }), [cart, addToCart, removeFromCart])}>
         {children}
         </CartContext.Provider>
     );
